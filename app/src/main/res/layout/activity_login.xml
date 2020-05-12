@@ -45,8 +45,8 @@
 
             <ImageView
                 android:id="@+id/imageView10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="120sp"
                 app:srcCompat="@drawable/recipez_logo" />
 
             <TextView
@@ -89,23 +89,23 @@
         tools:layout_editor_absoluteX="20dp">
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/emailLabel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Username"
+            android:text="Email Address"
             android:textColor="@color/Black"
             android:textSize="18sp"
             app:fontFamily="@font/open_sans_light" />
 
         <EditText
-            android:id="@+id/usernameLoginEntry"
+            android:id="@+id/emailRegisterEntry"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:ems="10"
-            android:hint="Enter username"
-            android:inputType="textPersonName"
+            android:hint="youremail@example.com"
+            android:inputType="textEmailAddress"
             android:theme="@style/EditTextTheme"
             app:fontFamily="@font/open_sans_light" />
 
