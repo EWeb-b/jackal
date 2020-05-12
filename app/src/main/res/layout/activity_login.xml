@@ -31,7 +31,7 @@
         android:id="@+id/frameLayout"
         android:layout_width="fill_parent"
         android:layout_height="180dp"
-        android:background="@color/darkBlue"
+        android:background="@color/LightGreen"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="-11dp">
@@ -47,7 +47,7 @@
                 android:id="@+id/imageView10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/leeds_ride_logo" />
+                app:srcCompat="@drawable/recipez_logo" />
 
             <TextView
                 android:id="@+id/textView3"
@@ -55,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Login"
-                android:textColor="@color/white"
+                android:textColor="@color/White"
                 android:textSize="22sp"
                 android:textStyle="bold"
                 app:fontFamily="@font/open_sans_light"
@@ -93,7 +93,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Username"
-            android:textColor="@color/black"
+            android:textColor="@color/Black"
             android:textSize="18sp"
             app:fontFamily="@font/open_sans_light" />
 
@@ -118,7 +118,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Password"
-            android:textColor="@color/black"
+            android:textColor="@color/Black"
             android:textSize="18sp"
             app:fontFamily="@font/open_sans_light" />
 
@@ -145,8 +145,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Remember me"
-                android:textColor="@color/lightGrey"
-                app:buttonTint="@color/Orange"
+                android:textColor="@color/LightGrey"
+                app:buttonTint="@color/GreyBlue"
                 app:fontFamily="@font/open_sans_light" />
 
             <Button
@@ -157,7 +157,7 @@
                 android:background="@android:color/transparent"
                 android:text="Forgot password?"
                 android:textAllCaps="false"
-                android:textColor="@color/lightGrey"
+                android:textColor="@color/LightGrey"
                 android:textStyle="bold"
                 app:fontFamily="@font/open_sans_light" />
         </LinearLayout>
