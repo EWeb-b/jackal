@@ -35,22 +35,43 @@ class Login : AppCompatActivity() {
                 findViewById<View>(R.id.emailLoginEntry) as EditText
             val password =
                 findViewById<View>(R.id.passwordLoginEntry) as EditText
-
-            mAuth.signInWithEmailAndPassword(email.text.toString(), password.text.toString())
-                .addOnCompleteListener(this) { task ->
-                    if (task.isSuccessful) {
-                        // Sign in success, update UI with the signed-in user's information
-                        val mainMenuIntent = Intent(applicationContext, MainActivity::class.java)
-                        startActivity(mainMenuIntent)
-                        finish()
-                        Log.d(TAG, "signInWithEmail:success")
-                    } else {
-                        // If sign in fails, display a message to the user.
-                        Log.w(TAG, "signInWithEmail:failure", task.exception)
-                        Toast.makeText(baseContext, "Authentication failed. Please try again!",
-                            Toast.LENGTH_SHORT).show()
-                    }
+            if (email.text.toString().isNotEmpty()) {
+                if (password.text.toString().isNotEmpty()) {
+                    mAuth.signInWithEmailAndPassword(
+                        email.text.toString(),
+                        password.text.toString()
+                    )
+                        .addOnCompleteListener(this) { task ->
+                            if (task.isSuccessful) {
+                                // Sign in success, update UI with the signed-in user's information
+                                val mainMenuIntent =
+                                    Intent(applicationContext, MainActivity::class.java)
+                                startActivity(mainMenuIntent)
+                                finish()
+                                Log.d(TAG, "signInWithEmail:success")
+                            } else {
+                                // If sign in fails, display a message to the user.
+                                Log.w(TAG, "signInWithEmail:failure", task.exception)
+                                Toast.makeText(
+                                    baseContext, "Authentication failed. Please try again!",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        }
+                } else {
+                    Toast.makeText(
+                        applicationContext,
+                        "You must provide a password!",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
+            } else {
+                Toast.makeText(
+                    applicationContext,
+                    "You must provide an email address!",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         }
     }
 }
