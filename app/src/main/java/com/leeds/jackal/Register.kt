@@ -31,35 +31,53 @@ class Register : AppCompatActivity() {
             val phone =
                 findViewById<View>(R.id.phoneRegisterEntry) as EditText
 
-            if (password == repeatPassword) {
-                mAuth.createUserWithEmailAndPassword(
-                    email.text.toString(),
-                    password.text.toString()
-                )
-                    .addOnCompleteListener(this) { task ->
-                        if (task.isSuccessful) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "createUserWithEmail:success")
-//                            val user = auth.currentUser
-//                            updateUI(user)
-                            val mainMenuIntent = Intent(applicationContext, MainActivity::class.java)
-                            startActivity(mainMenuIntent)
-                            finish()
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "createUserWithEmail:failure", task.exception)
-                            Toast.makeText(
-                                baseContext, "Authentication failed. Please Try again",
-                                Toast.LENGTH_SHORT
-                            ).show()
-//                            updateUI(null)
-                        }
+            // password must be longer than 6 chars - add if statement
+            if (email.text.toString().isNotEmpty()) {
+                if (password.text.toString().length >= 6) {
+                    if (password.text.toString() == repeatPassword.text.toString()) {
+                        mAuth.createUserWithEmailAndPassword(
+                            email.text.toString(),
+                            password.text.toString()
+                        )
+                            .addOnCompleteListener(this) { task ->
+                                if (task.isSuccessful) {
+                                    // Sign in success, update UI with the signed-in user's information
+                                    Log.d(TAG, "createUserWithEmail:success")
+                                    //                            val user = auth.currentUser
+                                    //                            updateUI(user)
+                                    val mainMenuIntent =
+                                        Intent(applicationContext, MainActivity::class.java)
+                                    startActivity(mainMenuIntent)
+                                    finish()
+                                } else {
+                                    // If sign in fails, display a message to the user.
+                                    Log.w(TAG, "createUserWithEmail:failure", task.exception)
+                                    Toast.makeText(
+                                        baseContext, "Registration failed. Please Try again",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                    //                            updateUI(null)
+                                }
 
+                            }
+                    } else {
+                        Toast.makeText(
+                            applicationContext,
+                            "Those passwords don't match!!!",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
+                } else {
+                    Toast.makeText(
+                        applicationContext,
+                        "Passwords must be at least 6 characters long!",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
             } else {
                 Toast.makeText(
                     applicationContext,
-                    "Those passwords don't match!!!",
+                    "You must provide an email address!",
                     Toast.LENGTH_SHORT
                 ).show()
             }
