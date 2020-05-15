@@ -6,5 +6,5 @@ import com.google.gson.annotations.SerializedName
 data class FullNutrient(
     @SerializedName("attr_id")
     val attrId: Int,
-    val value: Int
+    val value: Double
 )

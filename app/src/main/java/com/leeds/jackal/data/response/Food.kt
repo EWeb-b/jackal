@@ -2,6 +2,7 @@ package com.leeds.jackal.data.response
 
 
 import com.google.gson.annotations.SerializedName
+import com.leeds.jackal.data.response.Tags
 
 data class Food(
     @SerializedName("alt_measures")
@@ -22,25 +23,25 @@ data class Food(
     @SerializedName("ndb_no")
     val ndbNo: Int,
     @SerializedName("nf_calories")
-    val nfCalories: Int,
+    val nfCalories: Double,
     @SerializedName("nf_cholesterol")
-    val nfCholesterol: Int,
+    val nfCholesterol: Double,
     @SerializedName("nf_dietary_fiber")
-    val nfDietaryFiber: Int,
+    val nfDietaryFiber: Double,
     @SerializedName("nf_p")
-    val nfP: Int,
+    val nfP: Double,
     @SerializedName("nf_potassium")
-    val nfPotassium: Int,
+    val nfPotassium: Double,
     @SerializedName("nf_protein")
-    val nfProtein: Int,
+    val nfProtein: Double,
     @SerializedName("nf_saturated_fat")
     val nfSaturatedFat: Double,
     @SerializedName("nf_sodium")
-    val nfSodium: Int,
+    val nfSodium: Double,
     @SerializedName("nf_sugars")
-    val nfSugars: Int,
+    val nfSugars: Double,
     @SerializedName("nf_total_carbohydrate")
-    val nfTotalCarbohydrate: Int,
+    val nfTotalCarbohydrate: Double,
     @SerializedName("nf_total_fat")
     val nfTotalFat: Double,
     @SerializedName("nix_brand_id")
@@ -57,7 +58,7 @@ data class Food(
     @SerializedName("serving_unit")
     val servingUnit: String,
     @SerializedName("serving_weight_grams")
-    val servingWeightGrams: Int,
+    val servingWeightGrams: Double,
     val source: Int,
     @SerializedName("sub_recipe")
     val subRecipe: Any?,

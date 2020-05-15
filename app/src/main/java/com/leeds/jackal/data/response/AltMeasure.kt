@@ -5,8 +5,8 @@ import com.google.gson.annotations.SerializedName
 
 data class AltMeasure(
     val measure: String,
-    val qty: Int,
+    val qty: Double,
     val seq: Int?,
     @SerializedName("serving_weight")
-    val servingWeight: Int
+    val servingWeight: Double
 )
