@@ -67,6 +67,10 @@ class MainActivity : AppCompatActivity() {
                     //sendNetworkRequest();
                 }
                 R.id.nav_changePassword -> {
+                    val changePasswordIntent =
+                        Intent(applicationContext, ChangePassword::class.java)
+                    startActivity(changePasswordIntent)
+                    finish()
                 }
                 R.id.nav_logOut -> {
                     //firebase logout
