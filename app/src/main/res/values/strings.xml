@@ -21,4 +21,8 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+    <string name="permission_request">This app requires access to files on your device</string>
+    <string name="no_text">No text found in image</string>
+
 </resources>
