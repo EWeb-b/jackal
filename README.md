@@ -26,6 +26,6 @@ supermarkets offer a free functional API.
 
 | Name          | email           | gitlab name |
 | ----          | -----	          | ----------- |
-| Kahlil Ibrahim| <sc17kei<@leeds>| @sc17kei    |
+| Kahlil Ibrahim| <sc17kei@leeds> | @sc17kei    |
 | Ed Webb       | <sc16eahw@leeds>| @EWebb      |
 | Jack Boreham	| <sc16jeb@leeds> | @Boreham	|
