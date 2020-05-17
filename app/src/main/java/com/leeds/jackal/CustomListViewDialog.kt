@@ -29,7 +29,6 @@ class CustomListViewDialog(var activity: Activity, internal var adapter: Recycle
 
         recyclerView = findViewById(R.id.recycler_view) as RecyclerView//recycler_view
         recyclerView?.layoutManager = LinearLayoutManager(activity,RecyclerView.VERTICAL,false)
-        //recyclerView?.layoutManager = mLayoutManager
         recyclerView?.adapter = adapter
 
         dialog_save_button.setOnClickListener(this)

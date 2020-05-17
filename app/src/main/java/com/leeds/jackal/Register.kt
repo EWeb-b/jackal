@@ -9,6 +9,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 
 class Register : AppCompatActivity() {
 
@@ -41,10 +42,8 @@ class Register : AppCompatActivity() {
                         )
                             .addOnCompleteListener(this) { task ->
                                 if (task.isSuccessful) {
-                                    // Sign in success, update UI with the signed-in user's information
                                     Log.d(TAG, "createUserWithEmail:success")
-                                    //                            val user = auth.currentUser
-                                    //                            updateUI(user)
+                                    FirebaseDatabase.getInstance().getReference().child("users").child(task.result!!.user!!.uid).child("email").setValue(email.text.toString())
                                     val mainMenuIntent =
                                         Intent(applicationContext, MainActivity::class.java)
                                     startActivity(mainMenuIntent)
@@ -56,7 +55,6 @@ class Register : AppCompatActivity() {
                                         baseContext, "Registration failed. Please Try again",
                                         Toast.LENGTH_SHORT
                                     ).show()
-                                    //                            updateUI(null)
                                 }
 
                             }
