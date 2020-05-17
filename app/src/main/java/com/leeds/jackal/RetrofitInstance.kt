@@ -11,9 +11,9 @@ class RetrofitInstance {
         private const val BASE_URL ="https://trackapi.nutritionix.com/v2/"
         fun getRetrofitInstance(): Retrofit.Builder {
             val okhttpClientBuilder = OkHttpClient.Builder()
-            val logging = HttpLoggingInterceptor()
-            logging.setLevel(HttpLoggingInterceptor.Level.BODY)
-            okhttpClientBuilder.addInterceptor(logging)
+//            val logging = HttpLoggingInterceptor()
+//            logging.setLevel(HttpLoggingInterceptor.Level.BODY)
+//            okhttpClientBuilder.addInterceptor(logging)
 
             return Retrofit.Builder()
                 .baseUrl(BASE_URL)
