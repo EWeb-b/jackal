@@ -31,6 +31,17 @@ class ForgotPassword : AppCompatActivity() {
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
                             Log.d(TAG, "Email sent.")
+                            Toast.makeText(
+                                applicationContext,
+                                "Your password reset email has been set!",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        } else {
+                            Toast.makeText(
+                                applicationContext,
+                                "Password reset email could not be sent. Please try again!",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
                     }
             } else {

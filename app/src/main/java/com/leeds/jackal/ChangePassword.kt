@@ -30,6 +30,17 @@ class ChangePassword : AppCompatActivity() {
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
                             Log.d(TAG, "User password updated.")
+                            Toast.makeText(
+                                applicationContext,
+                                "Your password has been changed!",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        } else {
+                            Toast.makeText(
+                                applicationContext,
+                                "We couldn't change your password. Please try again!",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
                     }
             } else {
