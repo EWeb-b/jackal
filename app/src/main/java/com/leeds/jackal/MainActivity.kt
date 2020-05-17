@@ -20,9 +20,6 @@ import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 
-import androidx.drawerlayout.widget.DrawerLayout
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 
 
@@ -44,16 +41,14 @@ class MainActivity : AppCompatActivity() {
             Log.v("TAG", " clicked")
             when (id) {
                 R.id.nav_home -> {
-                    // Handle the home action
                 }
-                R.id.nav_orders -> {
-                }
-                R.id.nav_cart -> {
-                }
-                R.id.nav_payment -> {
+                R.id.nav_camera -> {
+                    val newRecipeIntent =
+                        Intent(applicationContext, PhotoRecipeActivity::class.java)
+                    startActivity(newRecipeIntent)
+                    finish()
                 }
                 R.id.nav_help -> {
-                    //sendNetworkRequest();
                 }
                 R.id.nav_changePassword -> {
                     val changePasswordIntent =
