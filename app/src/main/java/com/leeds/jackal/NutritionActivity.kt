@@ -1,25 +1,40 @@
 package com.leeds.jackal
 
+import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.liveData
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.leeds.jackal.data.NutritionixAPIService
 import com.leeds.jackal.data.RecipeRequest
 import com.leeds.jackal.data.response.Food
 import com.leeds.jackal.data.response.NutritionResponse
+import kotlinx.android.synthetic.main.activity_nutrition.*
 import okhttp3.RequestBody
 import org.json.JSONObject
 import retrofit2.Response
 
 class NutritionActivity : AppCompatActivity() {
+    private lateinit var linearLayoutManager: LinearLayoutManager
+    private lateinit var adapter: RecyclerAdapter
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_nutrition)
+        val recyclerView:RecyclerView = findViewById(R.id.recycleView1)
+        linearLayoutManager = LinearLayoutManager(this)
+        recyclerView.layoutManager = linearLayoutManager
+        adapter = RecyclerAdapter(photosList)
+        recyclerView.adapter = adapter
+
         val retService = RetrofitInstance
             .getRetrofitInstance()
             .build()
@@ -40,25 +55,22 @@ class NutritionActivity : AppCompatActivity() {
             Log.i("6969it.message()", it.message())
             Toast.makeText(applicationContext,name,Toast.LENGTH_LONG).show()
         })
-        //Toast.makeText(applicationContext,"HELLOOOOO",Toast.LENGTH_LONG).show()
-
-        //val res = retService.getNutrition("2 eggs and 1kg of ham")
 
 
 
-//        val responseLiveData:LiveData<Response<NutritionResponse>> = liveData {
-//            val response:Response<NutritionResponse> = retService.getNutrition(hello)
-//            emit(response)
-//        }
-//        responseLiveData.observe(this, Observer {
-//            val nutritionList:MutableListIterator<Food>? = it.body()?.listIterator()
-//            if (nutritionList!=null){
-//                while (nutritionList.hasNext()){
-//                    val food:Food = nutritionList.next()
-//                    Log.i("6969MYTAG4",food.foodName)
-//                }
-//            }
-//
-//        })
+
+        resLive.observe(this, Observer {
+            val nutritionList:Iterator<Food>? = it.body()?.foods?.iterator()
+            if (nutritionList!=null){
+                while (nutritionList.hasNext()){
+                    val food = nutritionList.next()
+                    Log.i("6969ItFoodName",food.foodName)
+                    val image = ImageView(this)
+                    Glide.with(this).load(food.photo.thumb).into(image)
+                    recyclerView.addView(image)
+                }
+            }
+
+        })
     }
 }
