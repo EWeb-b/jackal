@@ -14,10 +14,7 @@ import android.os.Environment
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -61,6 +58,8 @@ class PhotoRecipeActivity : AppCompatActivity() {
 
         setupPermissions()
 
+        Toast.makeText(this@PhotoRecipeActivity, "Make sure you only photograph the ingredients!", Toast.LENGTH_LONG).show()
+
         photoButton.setOnClickListener {
             dispatchTakePictureIntent()
 
@@ -97,7 +96,6 @@ class PhotoRecipeActivity : AppCompatActivity() {
         ActivityCompat.requestPermissions(this,
             arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE),
             READ_STORAGE )
-
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
@@ -147,8 +145,6 @@ class PhotoRecipeActivity : AppCompatActivity() {
                 image.setImageBitmap(BitmapFactory.decodeFile(currentPhotoPath))
             }
         }
-
-
     }
 
 
@@ -239,10 +235,7 @@ class PhotoRecipeActivity : AppCompatActivity() {
                     // Task failed with an exception
                     e.printStackTrace()
                 }
-
-
         }
-
     }
 
     private fun resizeImage(selectedImage: Uri): Bitmap? {

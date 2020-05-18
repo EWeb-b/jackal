@@ -4,7 +4,6 @@ package com.leeds.jackal
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -39,17 +38,14 @@ class NutritionActivity : AppCompatActivity() {
             .create(NutritionixAPIService::class.java)
 
         val builder = StringBuilder()
-
         for (i in ingredients) {
             builder.append(i).append(", ")
         }
 
-        val requestBody =
-            RecipeRequest(builder.toString())
-
         val name = findViewById<TextView>(R.id.textView2)
         name.text = recipeName.toString()
 
+        val requestBody = RecipeRequest(builder.toString())
         val call = retService.getNutrition(requestBody)
 
         call.enqueue(object : Callback<NutritionResponse> {
@@ -59,7 +55,6 @@ class NutritionActivity : AppCompatActivity() {
                         layoutManager = LinearLayoutManager(this@NutritionActivity, RecyclerView.VERTICAL, false)
                         adapter = RecyclerAdapterNutrition(response.body())
                     }
-                    Toast.makeText(this@NutritionActivity, response.body()?.foods?.first()?.foodName, Toast.LENGTH_LONG).show()
                 }
             }
             override fun onFailure(call: Call<NutritionResponse>, t: Throwable) {

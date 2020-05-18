@@ -27,9 +27,7 @@ class RecipeAdapter (
 
         override fun onBindViewHolder(recipeViewHolder: RecipeViewHolder, i: Int) {
             recipeViewHolder.bindText(recipes!![i].recipeName, recipes[i].serves.toString(), recipes[i].ingredients)
-
         }
-
 
         override fun getItemCount(): Int {
             return if (recipes?.size != null){
@@ -38,7 +36,6 @@ class RecipeAdapter (
                 0
             }
         }
-
 
         class RecipeViewHolder(v: View) : RecyclerView.ViewHolder(v), View.OnClickListener, View.OnLongClickListener {
 
@@ -60,10 +57,8 @@ class RecipeAdapter (
             }
 
             override fun onClick(p0: View?) {
-                Log.d("TAG", "CLICKED!!!!BOOM")
                 val context = itemView.context
-                val openNutritionActivityIntent =
-                    Intent(context, NutritionActivity::class.java)
+                val openNutritionActivityIntent = Intent(context, NutritionActivity::class.java)
                 openNutritionActivityIntent.putExtra("INGREDIENTS", ingredientList)
                 openNutritionActivityIntent.putExtra("RECIPE_NAME", recipeName.text)
                 context.startActivity(openNutritionActivityIntent)
@@ -81,7 +76,6 @@ class RecipeAdapter (
                         // whenever data at this location is updated.
                         for (singleSnapshot in dataSnapshot.children) {
                             if (singleSnapshot.child("recipeName").value == recipeName.text){
-                                Log.d("To Delete", recipeName.text as String)
                                 singleSnapshot.ref.removeValue()
                             }
                         }
@@ -89,7 +83,7 @@ class RecipeAdapter (
                     }
                     override fun onCancelled(error: DatabaseError) {
                         // Failed to read value
-                        Log.w("bollocks", "Failed to read value.", error.toException())
+                        Log.w("Error", "Failed to read value.", error.toException())
                     }
                 })
                 return true

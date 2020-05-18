@@ -40,6 +40,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
+        <TextView
+            android:id="@+id/deleteHelp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Note: Tap and hold a recipe to delete it."
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/burgerMenu"
+            app:layout_constraintTop_toBottomOf="@+id/recipe_list_title" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recipe_recycler_view"
             android:layout_width="0dp"
@@ -48,7 +58,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/recipe_list_title" />
+            app:layout_constraintTop_toBottomOf="@id/deleteHelp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
