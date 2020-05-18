@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "846071129787",
+    "firebase_url": "https://recipez-4067f.firebaseio.com",
+    "project_id": "recipez-4067f",
+    "storage_bucket": "recipez-4067f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:846071129787:android:c34bf56b618b43bb9fab9e",
+        "android_client_info": {
+          "package_name": "com.leeds.jackal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "846071129787-m40l3jlhf01u253l9tjavhvklbepuhhq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDqeBYqOnHDh7W9FZCCsHzwm_aet5zysE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "846071129787-m40l3jlhf01u253l9tjavhvklbepuhhq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
