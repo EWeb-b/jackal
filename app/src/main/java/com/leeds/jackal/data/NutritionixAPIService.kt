@@ -1,6 +1,6 @@
 package com.leeds.jackal.data
 
-import com.leeds.jackal.data.response.NutritionResponse
+import com.leeds.jackal.data.response.unaggregated.NutritionResponse
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.Headers

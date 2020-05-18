@@ -5,15 +5,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.leeds.jackal.data.response.Food
-import com.leeds.jackal.data.response.NutritionResponse
+import com.leeds.jackal.data.response.unaggregated.Food
+import com.leeds.jackal.data.response.unaggregated.NutritionResponse
 import kotlinx.android.synthetic.main.nutrition_row.view.*
 
-//private val foods: NutritionResponse
+class RecyclerAdapterNutrition(private val nutritionResponse: NutritionResponse?): RecyclerView.Adapter<RecyclerAdapterNutrition.FoodHolder>() {
 
-class RecyclerAdapter(private val nutritionResponse: NutritionResponse?): RecyclerView.Adapter<RecyclerAdapter.FoodHolder>() {
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerAdapter.FoodHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerAdapterNutrition.FoodHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val row = layoutInflater.inflate(R.layout.nutrition_row, parent, false)
         return FoodHolder(row)
@@ -36,24 +34,19 @@ class RecyclerAdapter(private val nutritionResponse: NutritionResponse?): Recycl
     class FoodHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
         fun bindItems(food: Food) {
-//        Glide.with(this).load(food.photo.thumb).into(image)
             Glide.with(view.context).load(food.photo.thumb).into(view.foodImage)
+            view.name.text = food.foodName
             view.qty.text = food.servingQty.toString()
             view.unit.text = food.servingUnit
-            view.name.text = food.foodName
-            view.calories.text = food.nfCalories.toString()
-            view.weight.text = food.servingWeightGrams.toString()
-
-//            val qty = itemView.findViewById(R.id.qty) as TextView
-//            val unit = itemView.findViewById(R.id.unit) as TextView
-//            val name = itemView.findViewById(R.id.name) as TextView
-//            val calories = itemView.findViewById(R.id.calories) as TextView
-//            val weight = itemView.findViewById(R.id.weight) as TextView
-//            val foodGroup = itemView.findViewById(R.id.foodGroup) as TextView
-//
-//            textViewName.text = user.name
-//            textViewAddress.text = user.address
-
+            view.weight.text = food.servingWeightGrams.toString() + "g"
+            view.totalFat.text = "Total fat: " + food.nfTotalFat.toString() + "g"
+            view.satFat.text = "Sat. Fats: " + food.nfSaturatedFat.toString() + "g"
+            view.sodium.text = "Sodium: " + food.nfSodium.toString() + "mg"
+            view.carbs.text = "Carbs: " + food.nfTotalCarbohydrate.toString() + "g"
+            view.fibre.text =  "Fibre: " + food.nfDietaryFiber.toString() + "g"
+            view.sugars.text = "Sugars: " + food.nfSugars.toString() + "g"
+            view.protein.text = "Protein: " + food.nfProtein.toString() + "g"
+            view.calories.text = "Cals: " + food.nfCalories.toString() + "kcal"
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.leeds.jackal.data.response
+package com.leeds.jackal.data.response.unaggregated
 
 
 import com.google.gson.annotations.SerializedName

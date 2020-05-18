@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
@@ -11,14 +10,14 @@
         android:id="@+id/titleCard"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="400dp"
+            android:layout_height="119dp"
             android:padding="16dp">
 
             <ImageView
@@ -26,64 +25,80 @@
                 android:layout_width="100sp"
                 android:layout_height="100sp"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginRight="10dp"
+                android:layout_marginLeft="2dp"
                 app:srcCompat="@drawable/ic_launcher_foreground" />
-            <TextView
-                android:id="@+id/nameTitle"
-                android:layout_width="wrap_content"
+
+            <LinearLayout
+                android:layout_width="252dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_marginRight="10dp"
-                android:layout_toRightOf="@id/foodImageTitle"
-                android:text="Name"
-                android:textStyle="bold" />
+                android:layout_alignBottom="@+id/foodImageTitle"
+                android:layout_marginStart="6dp"
+                android:layout_marginBottom="0dp"
+                android:layout_toEndOf="@+id/foodImageTitle"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/nameTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="-1dp"
+                    android:text="Name"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/qtyTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="Qty"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/unitTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="Unit"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/weightTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="Weight (g)"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
             <TextView
-                android:id="@+id/qtyTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_marginRight="10dp"
-                android:layout_toRightOf="@id/nameTitle"
-                android:text="Qty"
-                android:textStyle="bold" />
-            <TextView
-                android:id="@+id/unitTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_marginRight="10dp"
-                android:layout_toRightOf="@id/qtyTitle"
-                android:text="Unit"
-                android:textStyle="bold" />
-            <TextView
-                android:id="@+id/weightTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_marginRight="10dp"
-                android:layout_toRightOf="@id/unitTitle"
-                android:text="Weight"
-                android:textStyle="bold" />
-            <TextView
-                android:id="@+id/caloriesTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_toRightOf="@id/weightTitle"
-                android:text="Calories"
-                android:textStyle="bold" />
+                android:id="@+id/textView2"
+                android:layout_width="267dp"
+                android:layout_height="58dp"
+                android:layout_alignTop="@+id/foodImageTitle"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="1dp"
+                android:layout_toEndOf="@+id/foodImageTitle"
+                android:text="TextView"
+                android:textSize="24sp"
+                android:textStyle="bold|italic" />
+
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/titleCard"
+        app:layout_constraintEnd_toEndOf="@+id/titleCard"
         app:layout_constraintLeft_toLeftOf="@id/titleCard"
+        app:layout_constraintStart_toStartOf="@+id/titleCard"
         app:layout_constraintTop_toBottomOf="@id/titleCard" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

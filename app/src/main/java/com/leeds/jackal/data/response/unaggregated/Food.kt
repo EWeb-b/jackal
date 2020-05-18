@@ -1,8 +1,7 @@
-package com.leeds.jackal.data.response
+package com.leeds.jackal.data.response.unaggregated
 
 
 import com.google.gson.annotations.SerializedName
-import com.leeds.jackal.data.response.Tags
 
 data class Food(
     @SerializedName("alt_measures")
