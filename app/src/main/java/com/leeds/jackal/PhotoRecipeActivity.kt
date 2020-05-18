@@ -21,6 +21,8 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.ml.vision.FirebaseVision
 import com.google.firebase.ml.vision.common.FirebaseVisionImage
 import kotlinx.android.synthetic.main.activity_photo_recipe.*
@@ -55,6 +57,8 @@ class PhotoRecipeActivity : AppCompatActivity() {
         image =  findViewById(R.id.testPhoto)
         galleryButton = findViewById(R.id.gallery_button)
         drawer = findViewById<View>(R.id.drawer_layout) as DrawerLayout
+        val navigationView: NavigationView = findViewById(R.id.nav_view)
+        val mAuth = FirebaseAuth.getInstance()
 
         setupPermissions()
 
@@ -63,6 +67,42 @@ class PhotoRecipeActivity : AppCompatActivity() {
         photoButton.setOnClickListener {
             dispatchTakePictureIntent()
 
+        }
+
+        navigationView.setNavigationItemSelectedListener { menuItem ->
+            val id = menuItem.itemId
+            Log.v("TAG", " clicked")
+            when (id) {
+                R.id.nav_home -> {
+                    val homeIntent =
+                        Intent(applicationContext, MainActivity::class.java)
+                    startActivity(homeIntent)
+                    finish()
+                }
+                R.id.nav_camera -> {
+                    val newRecipeIntent =
+                        Intent(applicationContext, PhotoRecipeActivity::class.java)
+                    startActivity(newRecipeIntent)
+                    finish()
+                }
+                R.id.nav_help -> {
+                }
+                R.id.nav_changePassword -> {
+                    val changePasswordIntent =
+                        Intent(applicationContext, ChangePassword::class.java)
+                    startActivity(changePasswordIntent)
+                    finish()
+                }
+                R.id.nav_logOut -> {
+                    mAuth.signOut()
+                    val logOutIntent =
+                        Intent(applicationContext, StartMenu::class.java)
+                    startActivity(logOutIntent)
+                    finish()
+                }
+            }
+            drawer!!.closeDrawer(GravityCompat.START)
+            true
         }
 
         val burgerMenu =
