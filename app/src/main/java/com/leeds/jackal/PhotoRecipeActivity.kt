@@ -252,11 +252,6 @@ class PhotoRecipeActivity : AppCompatActivity() {
                 .addOnSuccessListener { firebaseVisionText ->
 
                     //Process text
-
-                    //Prompt dialog for user
-                    //Dialog start
-                    Log.d("Picture Text", firebaseVisionText.text)
-
                     textBlock.visibility = View.VISIBLE
                     Log.d("Text blocks", firebaseVisionText.textBlocks.size.toString())
                     for (block in firebaseVisionText.textBlocks) {
@@ -265,15 +260,11 @@ class PhotoRecipeActivity : AppCompatActivity() {
                             ingredients.add(line.text)
                         }
                     }
-                    Log.d("LIst SIZE2", ingredients.size.toString())
+                    // Create data adapter from newly populated lists of text
                     val dataAdapter = RecyclerAdapter(ingredients)
-                    for (item in ingredients) {
-                        Log.i("LIST CONTENTS: " , item)
-                    }
                     customDialog = CustomListViewDialog(this@PhotoRecipeActivity, dataAdapter,ingredients)
                     customDialog!!.show()
                     customDialog!!.setCanceledOnTouchOutside(false)
-                    Log.d("List SIZE", ingredients.size.toString())
                 }
                 .addOnFailureListener { e ->
                     // Task failed with an exception

@@ -11,6 +11,8 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
@@ -18,6 +20,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.getValue
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -32,6 +35,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // RecylerView initailisation values
+        var recyclerView = findViewById<RecyclerView>(R.id.recipe_recycler_view)
+        recyclerView.layoutManager = LinearLayoutManager(this@MainActivity,RecyclerView.VERTICAL,false)
+        recyclerView.adapter = RecipeAdapter(null)
         var user = mAuth.currentUser
 
         val navigationView: NavigationView = findViewById(R.id.nav_view)
@@ -82,8 +89,15 @@ class MainActivity : AppCompatActivity() {
                     var recipe = singleSnapshot.getValue(Recipe::class.java)
                     if (recipe != null) {
                         userRecipes.add(recipe)
+
                     }
                     Log.d(TAG, recipe.toString())
+                }
+                Log.d("RECYYCLERRRRRRR", userRecipes.size.toString())
+                if (userRecipes.isNotEmpty()){
+                    val adapter = RecipeAdapter(userRecipes)
+                    recyclerView?.adapter = adapter
+
                 }
             }
 
