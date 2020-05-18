@@ -22,6 +22,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import com.google.firebase.ml.vision.FirebaseVision
 import com.google.firebase.ml.vision.common.FirebaseVisionImage
 import kotlinx.android.synthetic.main.activity_photo_recipe.*
@@ -32,14 +34,11 @@ import kotlin.collections.ArrayList
 
 class PhotoRecipeActivity : AppCompatActivity() {
 
-
-
-
-    lateinit var textBlock :TextView
     lateinit var image : ImageView
     lateinit var galleryButton: ImageButton
     lateinit var photoButton: Button
     private var ingredients: ArrayList<String> = ArrayList()
+    private var drawer: DrawerLayout? = null
 
     internal var customDialog: CustomListViewDialog? = null
 
@@ -56,9 +55,9 @@ class PhotoRecipeActivity : AppCompatActivity() {
 
         //Initialise and inflate activity views
         photoButton = findViewById(R.id.camera_button)
-        textBlock = findViewById(R.id.photoText)
         image =  findViewById(R.id.testPhoto)
         galleryButton = findViewById(R.id.gallery_button)
+        drawer = findViewById<View>(R.id.drawer_layout) as DrawerLayout
 
         setupPermissions()
 
@@ -66,6 +65,10 @@ class PhotoRecipeActivity : AppCompatActivity() {
             dispatchTakePictureIntent()
 
         }
+
+        val burgerMenu =
+            findViewById<View>(R.id.burgerMenu) as ImageButton
+        burgerMenu.setOnClickListener { drawer!!.openDrawer(GravityCompat.START) }
 
         setUpNewImageListener()
 
@@ -119,38 +122,6 @@ class PhotoRecipeActivity : AppCompatActivity() {
             }
         }
     }
-
-
-    fun checkPermission(requestCode: Int) {
-        when (requestCode) {
-            WRITE_STORAGE -> {
-                val hasWriteExternalStoragePermission = ActivityCompat.checkSelfPermission(
-                    this,
-                    android.Manifest.permission.WRITE_EXTERNAL_STORAGE
-                )
-
-//If we have access to external storage...//
-                if (hasWriteExternalStoragePermission == PackageManager.PERMISSION_GRANTED) {
-
-//...call selectPicture, which launches an Activity where the user can select an image//
-                    //selectPicture()
-
-//If permission hasn’t been granted, then...//
-                } else {
-
-//...request the permission//
-                    ActivityCompat.requestPermissions(
-                        this,
-                        arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE),
-                        requestCode
-                    )
-                }
-            }
-        }
-    }
-
-
-
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, returnedIntent: Intent?) {
@@ -252,7 +223,6 @@ class PhotoRecipeActivity : AppCompatActivity() {
                 .addOnSuccessListener { firebaseVisionText ->
 
                     //Process text
-                    textBlock.visibility = View.VISIBLE
                     Log.d("Text blocks", firebaseVisionText.textBlocks.size.toString())
                     for (block in firebaseVisionText.textBlocks) {
                         for (line in block.lines){
@@ -300,7 +270,6 @@ class PhotoRecipeActivity : AppCompatActivity() {
         }
     }
 
-
     private fun galleryAddPic() {
         Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE).also { mediaScanIntent ->
             val f = File(currentPhotoPath)
@@ -308,64 +277,4 @@ class PhotoRecipeActivity : AppCompatActivity() {
             sendBroadcast(mediaScanIntent)
         }
     }
-
-
-
-//
-//        fun createTempFile(file: File?): File {
-//            var file = file
-//            val directory = File(
-//                Environment.getExternalStorageDirectory()
-//                    .path + "/com.jessicathornsby.myapplication"
-//            )
-//            if (!directory.exists() || !directory.isDirectory) {
-//                directory.mkdirs()
-//            }
-//            if (file == null) {
-//                file = File(directory, "orig.jpg")
-//            }
-//            return file
-//        }
-//
-//        private fun compressPhoto(photoFile: File, bitmap: Bitmap?): Bitmap? {
-//            try {
-//                val fOutput = FileOutputStream(photoFile)
-//                bitmap.compress(Bitmap.CompressFormat.JPEG, 70, fOutput)
-//                fOutput.close()
-//            } catch (exception: IOException) {
-//                exception.printStackTrace()
-//            }
-//            return bitmap
-//        }
-//    }
-//    private static Bitmap rotateImageIfRequired(Bitmap img, Uri selectedImage) throws IOException {
-//
-//        ExifInterface ei = new ExifInterface(selectedImage.getPath());
-//        int orientation = ei.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
-//
-//        switch (orientation) {
-//            case ExifInterface.ORIENTATION_ROTATE_90:
-//            return rotateImage(img, 90);
-//            case ExifInterface.ORIENTATION_ROTATE_180:
-//            return rotateImage(img, 180);
-//            case ExifInterface.ORIENTATION_ROTATE_270:
-//            return rotateImage(img, 270);
-//            default:
-//            return img;
-//        }
-//    }
-//
-//    private static Bitmap rotateImage(Bitmap img, int degree) {
-//        Matrix matrix = new Matrix();
-//        matrix.postRotate(degree);
-//        Bitmap rotatedImg = Bitmap.createBitmap(img, 0, 0, img.getWidth(), img.getHeight(), matrix, true);
-//        img.recycle();
-//        return rotatedImg;
-//    }
-
-
-
-
-
-
-    }
+}

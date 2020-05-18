@@ -1,8 +1,11 @@
 package com.leeds.jackal
 
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -12,6 +15,7 @@ import com.leeds.jackal.data.response.unaggregated.NutritionResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.lang.StringBuilder
 
 // Activity file for the nutrition API.
 class NutritionActivity : AppCompatActivity() {
@@ -19,6 +23,10 @@ class NutritionActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_nutrition)
+
+        val intent = intent
+        val recipeName = intent.getStringExtra("RECIPE_NAME")
+        val ingredients = intent.getStringArrayListExtra("INGREDIENTS")
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
@@ -30,8 +38,17 @@ class NutritionActivity : AppCompatActivity() {
             .build()
             .create(NutritionixAPIService::class.java)
 
+        val builder = StringBuilder()
+
+        for (i in ingredients) {
+            builder.append(i).append(", ")
+        }
+
         val requestBody =
-            RecipeRequest("500g mince beef, 2 carrots, 2 onions, 2 stick celery, 2 500ml tins of chopped tomatoes, 1 tbsp tomato purée, 2 tbsp olive oil, 1 teaspoon oregano, 500g dry spaghetti, 3 cloves garlic")
+            RecipeRequest(builder.toString())
+
+        val name = findViewById<TextView>(R.id.textView2)
+        name.text = recipeName.toString()
 
         val call = retService.getNutrition(requestBody)
 

@@ -39,7 +39,7 @@ class CustomListViewDialog(var activity: Activity, internal var adapter: Recycle
     override fun onClick(v: View) {
         when (v.id) {
             R.id.dialog_save_button -> {
-                val recipeName = edit_recipename.text.toString()
+                val recipeName = edit_recipename.text.toString().capitalize()
                 val serves = edit_serves.text.toString()
                 val recipe = Recipe(recipeName,serves.toInt(),ingredients)
                 // Write a message to the database

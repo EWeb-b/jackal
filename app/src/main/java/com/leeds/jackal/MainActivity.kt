@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.View
+import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -19,8 +20,6 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.ktx.getValue
-import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -49,6 +48,10 @@ class MainActivity : AppCompatActivity() {
             Log.v("TAG", " clicked")
             when (id) {
                 R.id.nav_home -> {
+                    val homeIntent =
+                        Intent(applicationContext, MainActivity::class.java)
+                    startActivity(homeIntent)
+                    finish()
                 }
                 R.id.nav_camera -> {
                     val newRecipeIntent =
@@ -76,6 +79,10 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
+        val burgerMenu =
+            findViewById<View>(R.id.burgerMenu) as ImageButton
+        burgerMenu.setOnClickListener { drawer!!.openDrawer(GravityCompat.START) }
+
         val savedRecipes = FirebaseDatabase.getInstance().getReference().child("users").child(user!!.uid).child("recipes")
 
         // Read from the database
@@ -83,17 +90,13 @@ class MainActivity : AppCompatActivity() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-//                val value = dataSnapshot.getValue<ArrayList<Recipe>>()
-//                Log.d(TAG, "Value is: ${value.toString()}")
+                userRecipes = ArrayList<Recipe>()
                 for (singleSnapshot in dataSnapshot.children) {
                     var recipe = singleSnapshot.getValue(Recipe::class.java)
                     if (recipe != null) {
                         userRecipes.add(recipe)
-
                     }
-                    Log.d(TAG, recipe.toString())
                 }
-                Log.d("RECYYCLERRRRRRR", userRecipes.size.toString())
                 if (userRecipes.isNotEmpty()){
                     val adapter = RecipeAdapter(userRecipes)
                     recyclerView?.adapter = adapter
@@ -106,8 +109,6 @@ class MainActivity : AppCompatActivity() {
                 Log.w(TAG, "Failed to read value.", error.toException())
             }
         })
-        Log.d(TAG, "This is the array list")
-        Log.d(TAG, userRecipes.toString())
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
