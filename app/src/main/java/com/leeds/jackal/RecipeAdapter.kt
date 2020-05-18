@@ -71,13 +71,7 @@ class RecipeAdapter (
 
             override fun onLongClick(p0: View?): Boolean {
                 val context = itemView.context
-//                val ref = FirebaseDatabase.getInstance().reference.child("users").child(user!!.uid).child("recipes")
-//                var query = ref.orderByChild("recipeName").equals(recipeName.text)//.equalTo(recipeName.text)
-//                query.once("value", function(snapshot) {
-//                    snapshot.forEach(function(child) {
-//                        child.ref.remove();
-//                    })
-//               .child(recipe)
+
                 val savedRecipes = FirebaseDatabase.getInstance().getReference().child("users").child(user!!.uid).child("recipes")
 
                 // Read from the database
@@ -86,7 +80,6 @@ class RecipeAdapter (
                         // This method is called once with the initial value and again
                         // whenever data at this location is updated.
                         for (singleSnapshot in dataSnapshot.children) {
-    //                        var recipe = singleSnapshot.getValue(Recipe::class.java)
                             if (singleSnapshot.child("recipeName").value == recipeName.text){
                                 Log.d("To Delete", recipeName.text as String)
                                 singleSnapshot.ref.removeValue()
@@ -99,9 +92,7 @@ class RecipeAdapter (
                         Log.w("bollocks", "Failed to read value.", error.toException())
                     }
                 })
-
                 return true
-
             }
     }
 }

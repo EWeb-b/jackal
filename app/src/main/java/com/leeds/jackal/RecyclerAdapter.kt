@@ -31,9 +31,6 @@ class RecyclerAdapter(
 
 
     class IngredientViewHolder(v: View) : RecyclerView.ViewHolder(v){
-
-//        var mTextView: TextView = v.ingredient
-//
         fun bindText(text : String) {
             val ingredientText = itemView.findViewById(R.id.ingredient) as TextView
             ingredientText.setText(text)// = text

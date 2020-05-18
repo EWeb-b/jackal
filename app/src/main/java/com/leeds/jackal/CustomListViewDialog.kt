@@ -52,7 +52,7 @@ class CustomListViewDialog(var activity: Activity, internal var adapter: Recycle
             R.id.dialog_cancel_button -> dismiss()
             else -> {
             }
-        }//Do Something
+        }
         dismiss()
     }
 }

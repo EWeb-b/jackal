@@ -11,9 +11,6 @@ class RetrofitInstance {
         private const val BASE_URL ="https://trackapi.nutritionix.com/v2/"
         fun getRetrofitInstance(): Retrofit.Builder {
             val okhttpClientBuilder = OkHttpClient.Builder()
-//            val logging = HttpLoggingInterceptor()
-//            logging.setLevel(HttpLoggingInterceptor.Level.BODY)
-//            okhttpClientBuilder.addInterceptor(logging)
 
             return Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -22,16 +19,3 @@ class RetrofitInstance {
         }
     }
 }
-
-//    companion object {
-//        operator fun invoke(): NutritionixAPIService{
-//            val okHttpClient = okHttpClient.Builder()
-//                .build()
-//            return Retrofit.Builder()
-//                .client(okHttpClient)
-//                .baseUrl("https://trackapi.nutritionix.com/v2/")
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .build()
-//
-//        }
-//    }

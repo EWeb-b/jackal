@@ -131,7 +131,6 @@ class PhotoRecipeActivity : AppCompatActivity() {
                 returnedIntent?.data?.let {
                     val selectedImageBitmap = resizeImage(it)
                     testPhoto.setImageBitmap(selectedImageBitmap)
-                    //Log.d("LIst SIZE0", ingredients.size.toString())
                     val firebaseImg = FirebaseVisionImage.fromBitmap(selectedImageBitmap!!)
                     runTextRecognition(firebaseImg)
                 }

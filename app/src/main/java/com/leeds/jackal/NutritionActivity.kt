@@ -55,7 +55,6 @@ class NutritionActivity : AppCompatActivity() {
         call.enqueue(object : Callback<NutritionResponse> {
             override fun onResponse(call: Call<NutritionResponse>, response: Response<NutritionResponse>) {
                 if (response.isSuccessful){
-                    // progress_bar.visibility = View.GONE
                     recyclerView.apply {
                         layoutManager = LinearLayoutManager(this@NutritionActivity, RecyclerView.VERTICAL, false)
                         adapter = RecyclerAdapterNutrition(response.body())

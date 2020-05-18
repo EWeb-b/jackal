@@ -11,8 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 
 class Login : AppCompatActivity() {
-//    var storedUsername: String? = null
-//    var storedPassword: String? = null
+
     val mAuth = FirebaseAuth.getInstance()
     private val TAG: String = com.leeds.jackal.Login::class.java.getSimpleName()
 
@@ -43,7 +42,6 @@ class Login : AppCompatActivity() {
                     )
                         .addOnCompleteListener(this) { task ->
                             if (task.isSuccessful) {
-                                // Sign in success, update UI with the signed-in user's information
                                 val mainMenuIntent =
                                     Intent(applicationContext, MainActivity::class.java)
                                 startActivity(mainMenuIntent)
